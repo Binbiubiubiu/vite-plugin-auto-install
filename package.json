@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "build:plugin": "rimraf lib && tsc --build tsconfig.build.json",
-    "release": "standard-version && npm publish"
+    "release": "npm run build:plugin && standard-version && npm publish"
   },
   "dependencies": {
     "antd": "^4.16.6",
@@ -25,5 +25,20 @@
     "standard-version": "^9.3.0",
     "typescript": "^4.3.2",
     "vite": "^2.4.0"
-  }
+  },
+  "description": "auto install dependencies when you exec `npm run dev`",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simon-Bin/vite-plugin-auto-install.git"
+  },
+  "keywords": ["vite","auto install","plugin","vite-plugin"],
+  "author": "simon-bin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Simon-Bin/vite-plugin-auto-install/issues"
+  },
+  "homepage": "https://github.com/Simon-Bin/vite-plugin-auto-install#readme"
 }
