@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-auto-install",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "scripts": {
@@ -34,7 +34,12 @@
     "type": "git",
     "url": "git+https://github.com/Simon-Bin/vite-plugin-auto-install.git"
   },
-  "keywords": ["vite","auto install","plugin","vite-plugin"],
+  "keywords": [
+    "vite",
+    "auto install",
+    "plugin",
+    "vite-plugin"
+  ],
   "author": "simon-bin",
   "license": "MIT",
   "bugs": {
