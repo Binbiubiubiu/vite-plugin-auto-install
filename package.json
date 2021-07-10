@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-auto-install",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "scripts": {
@@ -11,12 +11,12 @@
     "release": "npm run build:plugin && standard-version && npm publish"
   },
   "dependencies": {
-    "antd": "^4.16.6",
-    "ora": "^5.4.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "ora": "^5.4.1"
   },
   "devDependencies": {
+    "antd": "^4.16.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "@types/node": "^16.3.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -30,6 +30,10 @@
   "directories": {
     "lib": "lib"
   },
+  "files": [
+    "lib",
+    "types"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Simon-Bin/vite-plugin-auto-install.git"
