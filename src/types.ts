@@ -1,8 +1,16 @@
+import { FilterPattern } from "@rollup/pluginutils";
+
 export interface AutoInstallOptions {
   /**
-   * root project path
+   * the code which included was execed by the plugin
    */
-  root: string;
+  include: FilterPattern;
+
+  /**
+   * the code which excluded was execed by the plugin
+   */
+  exclude: FilterPattern;
+
   /**
    * package.json file path
    */
@@ -22,7 +30,8 @@ export const CMD = {
 };
 
 export const DEFAULT_OPTIONS: AutoInstallOptions = {
-  root: process.cwd(),
   file: "package.json",
   cli: "npm",
+  include:null,
+  exclude:null,
 };

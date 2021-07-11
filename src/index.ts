@@ -2,22 +2,26 @@ import path from "path";
 import fs from "fs";
 import { exec } from "child_process";
 import { promisify } from "util";
-import { normalizePath, Plugin } from "vite";
-import ora, { Ora } from "ora";
+import { Plugin } from "vite";
+import { createFilter } from '@rollup/pluginutils';
+import ora,{Ora} from "ora";
 import { AutoInstallOptions, DEFAULT_OPTIONS, CMD } from "./types";
 import { getPkgName, isLocalPath } from "./utils";
 
 const execSync = promisify(exec);
 
+const root = process.cwd();
+
 export default function (ops: Partial<AutoInstallOptions> = {}): Plugin {
   let options = Object.assign({}, DEFAULT_OPTIONS, ops) as AutoInstallOptions;
 
-  const cmd = CMD[options.cli];
+  const cli = options.cli;
+  const cmd = CMD[cli];
   if (!cmd) {
-    throw new Error(`${options.cli} is not valid package manage`);
+    throw new Error(`${cli} is not valid package manage`);
   }
 
-  const configFile = path.join(normalizePath(options.root), options.file);
+  const configFile = path.join(root, options.file);
 
   let installedPkg: string[] = [];
 
@@ -30,6 +34,7 @@ export default function (ops: Partial<AutoInstallOptions> = {}): Plugin {
       throw new Error("package.json parse failed");
     }
   }
+  const filter = createFilter(options.include, options.exclude);
 
   let spinner: Ora;
 
@@ -40,7 +45,8 @@ export default function (ops: Partial<AutoInstallOptions> = {}): Plugin {
     },
     async resolveId(id, importer) {
       // entry module ignore.
-      if (!importer) return null;
+      if (!importer) return id;
+      if(!filter(importer))return id;
 
       const isNeedInstallPkg = !isLocalPath(id);
 
